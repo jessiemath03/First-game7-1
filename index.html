@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <title>Jessie Math - 三年級 公斤與公克 </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --primary: #ffb703;
+      --primary-dark: #fb8500;
+      --bg: #fef6e9;
+      --text: #222222;
+      --accent: #219ebc;
+      --danger: #e63946;
+      --success: #2a9d8f;
+      --card: #ffffff;
+      --shadow: 0 4px 12px rgba(0,0,0,0.12);
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Noto Sans TC", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 1200px; /* ✅ 更寬：題目區更舒展 */
+      padding: 12px 16px 24px;
+    }
+
+    .hero-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      gap: 12px;
+    }
+
+    .brand-area {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-logo-wrap {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.18);
+      flex-shrink: 0;
+    }
+
+    .brand-logo-wrap img {
+      width: 90%;
+      height: auto;
+      display: block;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .brand-title {
+      font-weight: 800;
+      font-size: 1.1rem;
+      letter-spacing: 0.04em;
+    }
+
+    .brand-subtitle {
+      font-size: 0.78rem;
+      color: #555;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: none;
+      background: #ffffff;
+      color: #333;
+      font-size: 0.82rem;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+      text-decoration: none;
+      transition: transform 0.08s ease, box-shadow 0.08s ease, background 0.12s ease;
+    }
+
+    .nav-btn span.icon { font-size: 1rem; }
+
+    .nav-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.18);
+      background: #fff9e6;
+    }
+
+    .nav-btn:active {
+      transform: translateY(0);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      padding: 20px 18px 18px;
+    }
+
+    .page-section { display: none; }
+    .page-section.active { display: block; }
+
+    h1, h2, h3 { margin: 0; }
+    h1 { font-size: 1.4rem; margin-bottom: 4px; }
+    h2 { font-size: 1.2rem; margin-bottom: 10px; }
+    h3 { font-size: 1.05rem; margin-bottom: 8px; }
+
+    p {
+      margin: 0 0 8px;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .highlight {
+      color: var(--primary-dark);
+      font-weight: 700;
+    }
+
+    .field-group { margin-top: 10px; margin-bottom: 8px; }
+
+    label {
+      display: block;
+      font-size: 0.9rem;
+      margin-bottom: 4px;
+    }
+
+    input[type="text"], select {
+      width: 100%;
+      padding: 8px 10px;
+      border-radius: var(--radius-sm);
+      border: 1px solid #ddd;
+      font-size: 0.9rem;
+    }
+
+    input[type="text"]:focus, select:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px rgba(33,158,188,0.15);
+    }
+
+    .btn-row {
+      margin-top: 14px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 999px;
+      padding: 8px 16px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: transform 0.08s ease, box-shadow 0.08s ease, background 0.12s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: #fff;
+      box-shadow: 0 4px 10px rgba(251,133,0,0.45);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 12px rgba(251,133,0,0.6);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 6px rgba(251,133,0,0.4);
+    }
+
+    .btn-ghost {
+      background: #fffaf0;
+      color: #444;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+    }
+
+    .btn-ghost:hover { background: #fff1cd; }
+
+    .btn-danger {
+      background: #ffe5e8;
+      color: var(--danger);
+      box-shadow: 0 2px 6px rgba(230,57,70,0.15);
+    }
+
+    .btn-danger:hover { background: #ffd3da; }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid #ddd;
+      color: #444;
+    }
+
+    .btn-outline:hover { background: #fff7e3; }
+
+    .btn[disabled] {
+      opacity: 0.5;
+      cursor: not-allowed;
+      box-shadow: none;
+      transform: none;
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: minmax(0,1.4fr) minmax(0,1fr);
+      gap: 14px;
+      margin-top: 10px;
+      align-items: flex-start;
+    }
+
+    .intro-box {
+      background: #fff9ec;
+      border-radius: var(--radius-md);
+      padding: 10px 12px;
+      border: 1px dashed rgba(251,133,0,0.5);
+    }
+
+    .intro-list {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 0.86rem;
+    }
+
+    .intro-list li { margin-bottom: 4px; }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .tag {
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      background: #fff2c6;
+      color: #8b5a00;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: minmax(0,2fr) minmax(0,1.6fr);
+      gap: 16px;
+      margin-top: 8px;
+    }
+
+    .section-box {
+      background: #fffaf4;
+      border-radius: var(--radius-md);
+      padding: 10px 12px;
+      border: 1px solid #f3e0b8;
+    }
+
+    .pill-title {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #fff1cd;
+      margin-bottom: 6px;
+    }
+
+    .level-list, .speed-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .chip {
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.84rem;
+      cursor: pointer;
+      border: 1px solid #f0d7a1;
+      background: #fffdf6;
+    }
+
+    .chip.active {
+      background: var(--primary);
+      border-color: var(--primary-dark);
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(251,133,0,0.5);
+    }
+
+    .chip span.badge {
+      font-size: 0.7rem;
+      padding: 0 6px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.12);
+    }
+
+    .leaderboard-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8rem;
+      margin-top: 6px;
+    }
+
+    .leaderboard-table th,
+    .leaderboard-table td {
+      padding: 4px 6px;
+      text-align: left;
+      border-bottom: 1px solid #f1e1b9;
+    }
+
+    .leaderboard-table th { background: #fff4d6; }
+
+    .rank-tag {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      background: #ffe9b5;
+    }
+
+    .rank-1 { background: #ffdf6b; }
+    .rank-2 { background: #e0e6f8; }
+    .rank-3 { background: #ffd9b5; }
+
+    .game-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .status-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 0.9rem; /* ✅ 微放大狀態列 */
+    }
+
+    .status-pill {
+      padding: 6px 10px;  /* ✅ 讓狀態更好點擊與可讀 */
+      border-radius: 999px;
+      background: #fffaf0;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .status-label { opacity: 0.7; }
+    .status-value { font-weight: 800; }
+
+    .game-top-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .btn-small { padding: 8px 12px; font-size: 0.9rem; } /* ✅ 讓按鈕不那麼迷你 */
+
+    /* ✅ 遊戲：單欄 + 依比例放大「題目區/回答區」 */
+    .game-body {
+      display: grid;
+      grid-template-columns: minmax(0,1fr);
+      gap: 14px;
+      margin-top: 6px;
+    }
+
+    .question-card {
+      border-radius: var(--radius-md);
+      background: #fffaf6;
+      border: 1px solid #f2ddbc;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+
+      /* ✅ 放大比例：整體內距與最小高度提升 */
+      padding: clamp(16px, 2.2vw, 26px) clamp(16px, 2.4vw, 30px);
+      min-height: min(72vh, 640px);
+    }
+
+    .question-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .question-title-row h3{
+      font-size: clamp(1.05rem, 1.2vw, 1.25rem);
+      letter-spacing: 0.02em;
+    }
+
+    .question-main {
+      /* ✅ 題目字體依比例放大 */
+      font-size: clamp(1.12rem, 1.7vw, 1.5rem);
+      line-height: 1.75;
+      min-height: 120px; /* ✅ 題目區更大：不會擠成一團 */
+      padding: 10px 12px;
+      background: #fffefb;
+      border: 1px solid rgba(242, 221, 188, 0.9);
+      border-radius: 12px;
+    }
+
+    .answer-row {
+      display: grid;
+      grid-template-columns: minmax(220px, 1fr) auto; /* ✅ 輸入框吃大一點 */
+      gap: 12px;
+      align-items: center;
+      margin-top: 6px;
+    }
+
+    .answer-row input[type="text"] {
+      font-size: clamp(1.08rem, 1.5vw, 1.35rem);
+      padding: 14px 14px;
+      border-radius: 12px;
+      border: 1px solid #ddd;
+    }
+
+    .answer-row .btn {
+      font-size: clamp(1.0rem, 1.2vw, 1.15rem);
+      padding: 12px 18px;
+      border-radius: 14px;
+    }
+
+    .feedback-text {
+      font-size: clamp(1.02rem, 1.25vw, 1.18rem);
+      margin-top: 4px;
+      min-height: 28px;
+      font-weight: 700;
+    }
+
+    .feedback-correct { color: var(--success); }
+    .feedback-wrong { color: var(--danger); }
+
+    .tip-text {
+      font-size: clamp(0.92rem, 1.05vw, 1.02rem);
+      color: #666;
+      margin-top: 2px;
+      min-height: 18px;
+    }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 50;
+      padding: 16px;
+    }
+
+    .overlay.visible { display: flex; }
+
+    .overlay-card {
+      max-width: 440px;
+      width: 100%;
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+      padding: 18px 16px 14px;
+    }
+
+    .overlay-title {
+      font-size: 1.1rem;
+      margin-bottom: 4px;
+    }
+
+    .overlay-sub {
+      font-size: 0.86rem;
+      color: #555;
+      margin-bottom: 8px;
+    }
+
+    .overlay-btn-row {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+
+    .pause-mask { text-align: center; }
+    .pause-icon { font-size: 2.4rem; margin-bottom: 4px; }
+
+    @media (max-width: 768px) {
+      .hero-bar { flex-direction: row; align-items: flex-start; }
+      .intro-grid, .menu-grid { grid-template-columns: minmax(0,1fr); }
+      .card { padding: 16px 12px 14px; }
+      .game-header { flex-direction: column; align-items: stretch; }
+      .game-top-buttons { justify-content: flex-end; }
+
+      .question-card{
+        min-height: min(74vh, 720px);
+      }
+
+      .answer-row{
+        grid-template-columns: minmax(0,1fr);
+      }
+      .answer-row .btn{
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .brand-title { font-size: 1rem; }
+      .page { padding: 10px; }
+      .status-group { font-size: 0.88rem; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="hero-bar">
+      <div class="brand-area">
+        <div class="brand-logo-wrap">
+          <img src="JESSIEMATH-Q.png" alt="Jessie Math Logo" />
+        </div>
+        <div class="brand-text">
+          <div class="brand-title">Jessie Math</div>
+          <div class="brand-subtitle">三年級｜主題七：公斤與公克</div>
+        </div>
+      </div>
+
+      <nav class="nav-links">
+        <a class="nav-btn" href="https://jessiemath0703-chu.github.io/website2/" target="_blank" rel="noopener">
+          <span class="icon">🏠</span><span>首頁</span>
+        </a>
+        <a class="nav-btn" href="https://jessiemath0703-chu.github.io/Game-Lobby/" target="_blank" rel="noopener">
+          <span class="icon">🎮</span><span>遊戲大廳</span>
+        </a>
+        <a class="nav-btn" href="https://jessiemath0703-chu.github.io/Game-Lobby/#g3-u7" target="_blank" rel="noopener">
+          <span class="icon">↩️</span><span>三年級公斤與公克</span>
+        </a>
+      </nav>
+    </header>
+
+    <section class="card">
+      <!-- 第 1 頁 -->
+      <section id="page-1" class="page-section active">
+        <h1>先跟 捷析 說你是誰吧！</h1>
+        <p>請輸入玩家名稱，看看誰能在 <span class="highlight">60 秒</span> 內拿到最多星星和高分。</p>
+
+        <div class="intro-grid">
+          <div>
+            <div class="intro-box">
+              <h3>遊戲說明</h3>
+              <ul class="intro-list">
+                <li>每一局時間：<span class="highlight">60 秒</span>。</li>
+                <li>答對：+5 秒，得分加上 Combo 倍率，並顯示回饋。</li>
+                <li>答錯：−5 秒，會顯示「正確答案是：_____」。</li>
+                <li>本局結束後可選擇要不要寫入排行榜（避免洗榜）。</li>
+              </ul>
+              <div class="tag-row">
+                <span class="tag">公斤 kg</span>
+                <span class="tag">公克 g</span>
+                <span class="tag">單位換算</span>
+                <span class="tag">重量估測</span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="field-group">
+              <label for="playerName">玩家名稱（必填）</label>
+              <input id="playerName" type="text" placeholder="例如：重量小達人、小小秤重師…" />
+            </div>
+            <p class="tip-text">
+              小提醒：排行榜會顯示你的名字與分數，請取一個自己喜歡又安全的暱稱。
+            </p>
+            <div class="btn-row">
+              <button id="btnStartFromIntro" class="btn btn-primary">
+                進入關卡選單
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 第 2 頁 -->
+      <section id="page-2" class="page-section">
+        <h2>選擇關卡與速度</h2>
+        <p>先選關卡，再選速度，準備好就開始挑戰公斤與公克吧。</p>
+
+        <div class="menu-grid">
+          <div class="section-box">
+            <div class="pill-title">
+              <span>📚 關卡主選單</span>
+            </div>
+            <p class="tip-text">
+              各關卡對應教材內容：認識公斤、公克、幾公斤幾公克、換算與比較、計算與估測。
+            </p>
+            <div class="level-list" id="levelList"></div>
+
+            <div style="margin-top:10px;">
+              <div class="pill-title">
+                <span>⚡ 速度 / 難度</span>
+              </div>
+              <p class="tip-text">
+                速度越快，答對得分越多；但時間也會壓力更大。
+              </p>
+              <div class="speed-list" id="speedList"></div>
+            </div>
+
+            <div class="btn-row">
+              <button id="btnGoGame" class="btn btn-primary">
+                開始本局
+              </button>
+              <button id="btnBackToIntro" class="btn btn-ghost">
+                回輸入名字頁
+              </button>
+            </div>
+          </div>
+
+          <div class="section-box">
+            <div class="pill-title">
+              <span>🏅 排行榜（本機）</span>
+            </div>
+            <p class="tip-text">
+              只有完成一局後選擇「儲存成績」才會寫入排行榜，回主選單不會記錄，避免洗榜。
+            </p>
+            <table class="leaderboard-table" id="leaderboardTable">
+              <thead>
+                <tr>
+                  <th>名次</th>
+                  <th>玩家</th>
+                  <th>關卡</th>
+                  <th>速度</th>
+                  <th>分數</th>
+                  <th>★</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- 第 3 頁 -->
+      <section id="page-3" class="page-section">
+        <div class="game-header">
+          <div class="status-group">
+            <div class="status-pill">
+              <span class="status-label">玩家：</span>
+              <span class="status-value" id="statusPlayerName">－</span>
+            </div>
+            <div class="status-pill">
+              <span class="status-label">關卡：</span>
+              <span class="status-value" id="statusLevel">－</span>
+            </div>
+            <div class="status-pill">
+              <span class="status-label">速度：</span>
+              <span class="status-value" id="statusSpeed">－</span>
+            </div>
+            <div class="status-pill">
+              ⏱️ <span class="status-value" id="statusTime">60</span>s
+            </div>
+            <div class="status-pill">
+              🧠 分數：<span class="status-value" id="statusScore">0</span>
+            </div>
+            <div class="status-pill">
+              🔥 Combo：<span class="status-value" id="statusCombo">x1</span>
+            </div>
+          </div>
+          <div class="game-top-buttons">
+            <button id="btnRestart" class="btn btn-ghost btn-small">重新本局</button>
+            <button id="btnPause" class="btn btn-outline btn-small">暫停</button>
+            <button id="btnBackMenuFromGame" class="btn btn-danger btn-small">回關卡主選單</button>
+          </div>
+        </div>
+
+        <div class="game-body">
+          <div class="question-card">
+            <div class="question-title-row">
+              <h3>解題區</h3>
+              <span id="questionTag" class="tag">題目</span>
+            </div>
+
+            <div class="question-main" id="questionText">（按「開始本局」後會出題）</div>
+
+            <div class="answer-row">
+              <input id="answerInput" type="text" placeholder="輸入答案，例如：1500、3、>…" />
+              <button id="btnSubmit" class="btn btn-primary">作答</button>
+            </div>
+
+            <div class="feedback-text" id="feedbackText"></div>
+            <div class="tip-text" id="tipText"></div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- 暫停 -->
+    <div id="pauseOverlay" class="overlay">
+      <div class="overlay-card pause-mask">
+        <div class="pause-icon">⏸️</div>
+        <div class="overlay-title">暫停中</div>
+        <p class="overlay-sub">時間已暫停，題目鎖住。準備好了再繼續挑戰！</p>
+        <div class="overlay-btn-row" style="justify-content:center;">
+          <button id="btnResumeFromPause" class="btn btn-primary">繼續遊戲</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 結算 -->
+    <div id="resultOverlay" class="overlay">
+      <div class="overlay-card">
+        <div class="overlay-title">本局結束！</div>
+        <p class="overlay-sub">一起看看這一局你的表現如何吧。</p>
+        <p style="font-size:0.9rem;margin-bottom:6px;">玩家：<span class="highlight" id="resultPlayerName">－</span></p>
+        <p style="font-size:0.9rem;margin-bottom:6px;">關卡：<span id="resultLevelText">－</span>｜速度：<span id="resultSpeedText">－</span></p>
+        <p style="font-size:0.9rem;margin-bottom:6px;">分數：<span class="highlight" id="resultScore">0</span> 分</p>
+        <p style="font-size:0.9rem;margin-bottom:6px;">星等：<span id="resultStars">☆☆☆</span></p>
+        <p class="tip-text">星等說明：分數較高可拿到 ★★★，中等 ★★，基礎 ★。</p>
+        <div class="overlay-btn-row">
+          <button id="btnSaveScore" class="btn btn-primary">儲存成績到排行榜</button>
+          <button id="btnCloseResult" class="btn btn-ghost">不儲存，只回主選單</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const state = {
+      playerName: "",
+      level: 1,
+      speed: "normal",
+      score: 0,
+      timeLeft: 60,
+      combo: 0,
+      comboMultiplier: 1,
+      timerId: null,
+      isPlaying: false,
+      isPaused: false,
+      isLocking: false,
+      currentQuestion: null,
+      pendingScore: null,
+      feedbackDelayMs: 1200
+    };
+
+    const levelInfo = [
+      { id: 1, name: "第 1 關", desc: "認識公斤（需要推理）" },
+      { id: 2, name: "第 2 關", desc: "認識公克（需要推理）" },
+      { id: 3, name: "第 3 關", desc: "幾公斤幾公克" },
+      { id: 4, name: "第 4 關", desc: "換算與比較" },
+      { id: 5, name: "第 5 關", desc: "重量計算與估測" }
+    ];
+
+    const speedInfo = [
+      { id: "slow", label: "慢速", desc: "節奏較慢，得分較低。" },
+      { id: "normal", label: "一般", desc: "標準節奏。" },
+      { id: "fast", label: "加速", desc: "節奏較快，得分較高。" }
+    ];
+
+    const page1 = document.getElementById("page-1");
+    const page2 = document.getElementById("page-2");
+    const page3 = document.getElementById("page-3");
+
+    const inputPlayerName = document.getElementById("playerName");
+    const btnStartFromIntro = document.getElementById("btnStartFromIntro");
+
+    const levelListEl = document.getElementById("levelList");
+    const speedListEl = document.getElementById("speedList");
+    const btnGoGame = document.getElementById("btnGoGame");
+    const btnBackToIntro = document.getElementById("btnBackToIntro");
+
+    const statusPlayerName = document.getElementById("statusPlayerName");
+    const statusLevel = document.getElementById("statusLevel");
+    const statusSpeed = document.getElementById("statusSpeed");
+    const statusTime = document.getElementById("statusTime");
+    const statusScore = document.getElementById("statusScore");
+    const statusCombo = document.getElementById("statusCombo");
+
+    const questionText = document.getElementById("questionText");
+    const questionTag = document.getElementById("questionTag");
+    const answerInput = document.getElementById("answerInput");
+    const btnSubmit = document.getElementById("btnSubmit");
+    const feedbackText = document.getElementById("feedbackText");
+    const tipText = document.getElementById("tipText");
+
+    const btnRestart = document.getElementById("btnRestart");
+    const btnPause = document.getElementById("btnPause");
+    const btnBackMenuFromGame = document.getElementById("btnBackMenuFromGame");
+
+    const pauseOverlay = document.getElementById("pauseOverlay");
+    const btnResumeFromPause = document.getElementById("btnResumeFromPause");
+
+    const resultOverlay = document.getElementById("resultOverlay");
+    const resultPlayerName = document.getElementById("resultPlayerName");
+    const resultLevelText = document.getElementById("resultLevelText");
+    const resultSpeedText = document.getElementById("resultSpeedText");
+    const resultScore = document.getElementById("resultScore");
+    const resultStars = document.getElementById("resultStars");
+    const btnSaveScore = document.getElementById("btnSaveScore");
+    const btnCloseResult = document.getElementById("btnCloseResult");
+
+    const leaderboardTable = document.getElementById("leaderboardTable").querySelector("tbody");
+
+    function showPage(n) {
+      [page1, page2, page3].forEach((p, i) => p.classList.toggle("active", i === n - 1));
+    }
+
+    function initLevelChips() {
+      levelListEl.innerHTML = "";
+      levelInfo.forEach(lv => {
+        const div = document.createElement("div");
+        div.className = "chip" + (lv.id === state.level ? " active" : "");
+        div.dataset.level = lv.id;
+        div.innerHTML = `<span>${lv.name}</span><span class="badge">${lv.desc}</span>`;
+        div.addEventListener("click", () => { state.level = lv.id; updateLevelChipActive(); });
+        levelListEl.appendChild(div);
+      });
+    }
+
+    function updateLevelChipActive() {
+      levelListEl.querySelectorAll(".chip").forEach(chip => {
+        chip.classList.toggle("active", Number(chip.dataset.level) === state.level);
+      });
+    }
+
+    function initSpeedChips() {
+      speedListEl.innerHTML = "";
+      speedInfo.forEach(sp => {
+        const div = document.createElement("div");
+        div.className = "chip" + (sp.id === state.speed ? " active" : "");
+        div.dataset.speed = sp.id;
+        div.innerHTML = `<span>${sp.label}</span><span class="badge">${sp.desc}</span>`;
+        div.addEventListener("click", () => { state.speed = sp.id; updateSpeedChipActive(); });
+        speedListEl.appendChild(div);
+      });
+    }
+
+    function updateSpeedChipActive() {
+      speedListEl.querySelectorAll(".chip").forEach(chip => {
+        chip.classList.toggle("active", chip.dataset.speed === state.speed);
+      });
+    }
+
+    function loadLeaderboard() {
+      try {
+        const raw = localStorage.getItem("jessie_kg_g_feedback2_leaderboard");
+        if (!raw) return [];
+        const arr = JSON.parse(raw);
+        return Array.isArray(arr) ? arr : [];
+      } catch (e) { return []; }
+    }
+
+    function saveLeaderboard(data) {
+      localStorage.setItem("jessie_kg_g_feedback2_leaderboard", JSON.stringify(data));
+    }
+
+    function renderLeaderboard() {
+      const rows = loadLeaderboard().sort((a, b) => b.score - a.score).slice(0, 10);
+      leaderboardTable.innerHTML = "";
+      if (rows.length === 0) {
+        const tr = document.createElement("tr");
+        const td = document.createElement("td");
+        td.colSpan = 6;
+        td.textContent = "目前還沒有成績，快來當第一個上榜的小達人！";
+        tr.appendChild(td);
+        leaderboardTable.appendChild(tr);
+        return;
+      }
+      rows.forEach((r, idx) => {
+        const tr = document.createElement("tr");
+
+        const rankTd = document.createElement("td");
+        const rankSpan = document.createElement("span");
+        rankSpan.className = "rank-tag";
+        if (idx === 0) rankSpan.classList.add("rank-1");
+        if (idx === 1) rankSpan.classList.add("rank-2");
+        if (idx === 2) rankSpan.classList.add("rank-3");
+        rankSpan.textContent = idx + 1;
+        rankTd.appendChild(rankSpan);
+
+        const nameTd = document.createElement("td"); nameTd.textContent = r.name;
+        const levelTd = document.createElement("td"); levelTd.textContent = `第 ${r.level} 關`;
+        const speedTd = document.createElement("td"); speedTd.textContent = r.speedLabel;
+        const scoreTd = document.createElement("td"); scoreTd.textContent = r.score;
+        const starTd = document.createElement("td"); starTd.textContent = r.stars;
+
+        tr.appendChild(rankTd);
+        tr.appendChild(nameTd);
+        tr.appendChild(levelTd);
+        tr.appendChild(speedTd);
+        tr.appendChild(scoreTd);
+        tr.appendChild(starTd);
+        leaderboardTable.appendChild(tr);
+      });
+    }
+
+    function addScoreToLeaderboard(pending) {
+      if (!pending) return;
+      const list = loadLeaderboard();
+      list.push(pending);
+      saveLeaderboard(list);
+      renderLeaderboard();
+    }
+
+    function setAnswerLock(isLocked) {
+      state.isLocking = isLocked;
+      answerInput.disabled = isLocked;
+      btnSubmit.disabled = isLocked;
+    }
+
+    function updateStatusTexts() {
+      statusPlayerName.textContent = state.playerName || "－";
+      const lv = levelInfo.find(l => l.id === state.level);
+      statusLevel.textContent = lv ? lv.name : "－";
+      const sp = speedInfo.find(s => s.id === state.speed);
+      statusSpeed.textContent = sp ? sp.label : "－";
+      statusTime.textContent = state.timeLeft;
+      statusScore.textContent = state.score;
+      statusCombo.textContent = `x${state.comboMultiplier}`;
+    }
+
+    function computeStars(score) {
+      if (score >= 1500) return "★★★";
+      if (score >= 800) return "★★";
+      if (score > 0) return "★";
+      return "☆☆☆";
+    }
+
+    function randomInt(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    function generateQuestion() {
+      const lv = state.level;
+      const q = { text: "", answer: "", tag: "", tip: "" };
+
+      if (lv === 1) {
+        const perKg = randomInt(2, 4);
+        const bags = randomInt(2, 5);
+        const total = perKg * bags;
+        q.text = `每袋米重 ${perKg} 公斤，一共 ${bags} 袋，總共大約幾公斤？（只填「公斤」數字）`;
+        q.answer = String(total);
+        q.tag = "認識公斤";
+        q.tip = "把每袋的重量重複相加，就是總公斤數。";
+      } else if (lv === 2) {
+        const base = randomInt(100, 400);
+        const inc = [50, 80, 100][randomInt(0,2)];
+        const times = randomInt(2, 4);
+        const total = base + inc * times;
+        const mode = randomInt(1,2);
+        if (mode === 1) {
+          q.text = `一包糖果重 ${base} 公克，阿姨又多放了 ${times} 次，每次加 ${inc} 公克，最後大約幾公克？`;
+          q.tip = "先算「多放了幾公克」，再加回原本的重量。";
+        } else {
+          q.text = `一顆麵包重 ${base} 公克，另外一顆多 ${inc * times} 公克，較重的那顆大約幾公克？`;
+          q.tip = "原本的重量再加上「多出來的公克」。";
+        }
+        q.answer = String(total);
+        q.tag = "認識公克";
+      } else if (lv === 3) {
+        const kg = randomInt(1, 4);
+        const g = [100,200,300,400,500,600,700,800,900][randomInt(0,8)];
+        const totalG = kg * 1000 + g;
+        q.text = `一個箱子重 ${totalG} 公克，請把它寫成「幾公斤幾公克」，例如：2 公斤 300 公克。`;
+        q.answer = `${kg}公斤${g}公克`;
+        q.tag = "幾公斤幾公克";
+        q.tip = "先看裡面有幾個 1000 公克，就是幾公斤。";
+      } else if (lv === 4) {
+        const baseKg = randomInt(1, 4);
+        const diffG = [100,200,300][randomInt(0,2)];
+        const aTotal = baseKg * 1000;
+        const bTotal = aTotal + diffG * (Math.random() < 0.5 ? -1 : 1);
+        const mode = randomInt(1,2);
+        let formA, formB;
+        if (mode === 1) {
+          formA = `${baseKg} 公斤`;
+          formB = `比 ${baseKg} 公斤 ${bTotal > aTotal ? "重" : "輕"} ${Math.abs(diffG)} 公克的箱子`;
+        } else {
+          formA = `${aTotal} 公克`;
+          formB = `另一箱比它 ${bTotal > aTotal ? "多" : "少"} ${Math.abs(diffG)} 公克`;
+        }
+        const comp = aTotal === bTotal ? "=" : (aTotal > bTotal ? ">" : "<");
+        q.text = `${formA} 和 ${formB} 比較，哪一個比較重？請填「>」、「<」或「=」。`;
+        q.answer = comp;
+        q.tag = "換算與比較";
+        q.tip = "想像兩個都換成公克，再比較大小。";
+      } else {
+        const mode = randomInt(1, 3);
+        if (mode === 1) {
+          const kg1 = randomInt(1, 3);
+          const g1 = [0,200,500][randomInt(0,2)];
+          const kg2 = randomInt(1, 2);
+          const g2 = [0,200,500][randomInt(0,2)];
+          const totalG = kg1*1000 + g1 + kg2*1000 + g2;
+          q.text = `小明的行李重 ${kg1} 公斤 ${g1} 公克，小華的行李比他多 ${kg2} 公斤 ${g2} 公克，兩人行李合起來約幾公克？`;
+          q.answer = String(totalG);
+          q.tag = "重量計算";
+          q.tip = "先把兩個行李都換成公克，再相加。";
+        } else if (mode === 2) {
+          const baseKg = randomInt(2, 5);
+          const diffG = [200,300,500][randomInt(0,2)];
+          const big = baseKg * 1000;
+          const small = big - diffG;
+          const askBig = Math.random() < 0.5;
+          if (askBig) {
+            q.text = `一箱貨物比另一箱重 ${diffG} 公克，較輕的那箱重 ${small} 公克，較重的那箱重幾公克？`;
+            q.answer = String(big);
+            q.tip = "較重 = 較輕 + 相差的公克。";
+          } else {
+            q.text = `兩箱貨物相差 ${diffG} 公克，其中一箱是 ${big} 公克，另一箱重幾公克？（請填較輕的那箱）`;
+            q.answer = String(small);
+            q.tip = "較輕 = 較重 − 相差的公克。";
+          }
+          q.tag = "重量計算";
+        } else {
+          const kgOption = randomInt(1, 5);
+          const lower = kgOption * 1000 - 150;
+          const upper = kgOption * 1000 + 150;
+          const real = randomInt(lower, upper);
+          q.text = `一個包裹重約 ${real} 公克，大約是幾公斤最合理？（只填「公斤」數字，例如：3）`;
+          q.answer = String(kgOption);
+          q.tag = "重量估測";
+          q.tip = "想像接近哪一個 1000 公克。";
+        }
+      }
+      return q;
+    }
+
+    function showQuestion() {
+      const q = generateQuestion();
+      state.currentQuestion = q;
+      questionText.textContent = q.text;
+      questionTag.textContent = q.tag;
+      feedbackText.textContent = "";
+      feedbackText.className = "feedback-text";
+      tipText.textContent = q.tip || "";
+      answerInput.value = "";
+      setAnswerLock(false);
+      answerInput.focus();
+    }
+
+    function normalize(str) {
+      return str.replace(/\s+/g, "").replace(/公克/g, "g").replace(/公斤/g, "kg");
+    }
+
+    function checkAnswer() {
+      if (!state.isPlaying || !state.currentQuestion || state.isPaused || state.isLocking) return;
+      const userInput = answerInput.value.trim();
+      if (!userInput) return;
+
+      const q = state.currentQuestion;
+      let correct = false;
+
+      if (state.level === 3) {
+        correct = normalize(userInput) === normalize(q.answer);
+      } else if (state.level === 4) {
+        correct = userInput.replace(/\s+/g, "") === q.answer;
+      } else {
+        const numUser = Number(userInput);
+        const numAns = Number(q.answer);
+        correct = !isNaN(numUser) && numUser === numAns;
+      }
+
+      if (correct) handleCorrectAnswer();
+      else handleWrongAnswer();
+    }
+
+    function feedbackThenNext() {
+      updateStatusTexts();
+      setAnswerLock(true);
+      setTimeout(() => {
+        if (!state.isPlaying) return;
+        if (state.timeLeft <= 0) endGame();
+        else showQuestion();
+      }, state.feedbackDelayMs);
+    }
+
+    function handleCorrectAnswer() {
+      state.combo += 1;
+      state.comboMultiplier = 1 + Math.floor(state.combo / 3);
+
+      let base = 100;
+      if (state.speed === "slow") base = 80;
+      if (state.speed === "fast") base = 130;
+
+      state.score += base * state.comboMultiplier;
+      state.timeLeft = Math.min(state.timeLeft + 5, 120);
+
+      feedbackText.textContent = "回答正確！太讚了 🌟";
+      feedbackText.className = "feedback-text feedback-correct";
+      tipText.textContent = "漂亮！同一招繼續打下一題～";
+      feedbackThenNext();
+    }
+
+    function handleWrongAnswer() {
+      state.combo = 0;
+      state.comboMultiplier = 1;
+      state.timeLeft = Math.max(state.timeLeft - 5, 0);
+
+      feedbackText.textContent = `這題答錯了 😵 正確答案是：${state.currentQuestion.answer}`;
+      feedbackText.className = "feedback-text feedback-wrong";
+      tipText.textContent = state.currentQuestion.tip || "可以先把重量都換成公克再算，比較穩。";
+      feedbackThenNext();
+    }
+
+    function startTimer() {
+      stopTimer();
+      state.timerId = setInterval(() => {
+        if (!state.isPlaying || state.isPaused) return;
+        state.timeLeft -= 1;
+        if (state.timeLeft <= 0) {
+          state.timeLeft = 0;
+          updateStatusTexts();
+          endGame();
+        } else updateStatusTexts();
+      }, 1000);
+    }
+
+    function stopTimer() {
+      if (state.timerId) { clearInterval(state.timerId); state.timerId = null; }
+    }
+
+    function resetGameValues() {
+      state.score = 0;
+      state.timeLeft = 60;
+      state.combo = 0;
+      state.comboMultiplier = 1;
+      state.currentQuestion = null;
+      state.isPlaying = false;
+      state.isPaused = false;
+      state.isLocking = false;
+      state.pendingScore = null;
+      stopTimer();
+      updateStatusTexts();
+      questionText.textContent = "（按「開始本局」後會出題）";
+      feedbackText.textContent = "";
+      feedbackText.className = "feedback-text";
+      tipText.textContent = "";
+      setAnswerLock(false);
+    }
+
+    function startGame() {
+      if (!state.playerName) { alert("請先回到第一頁輸入玩家名稱。"); return; }
+      resetGameValues();
+      state.isPlaying = true;
+      updateStatusTexts();
+      showQuestion();
+      startTimer();
+    }
+
+    function endGame() {
+      if (!state.isPlaying) return;
+      state.isPlaying = false;
+      stopTimer();
+      setAnswerLock(true);
+      updateStatusTexts();
+
+      const score = state.score;
+      const stars = computeStars(score);
+      const lv = levelInfo.find(l => l.id === state.level);
+      const sp = speedInfo.find(s => s.id === state.speed);
+
+      resultPlayerName.textContent = state.playerName || "－";
+      resultLevelText.textContent = lv ? lv.name : "－";
+      resultSpeedText.textContent = sp ? sp.label : "－";
+      resultScore.textContent = score;
+      resultStars.textContent = stars;
+
+      state.pendingScore = {
+        name: state.playerName || "未知玩家",
+        level: state.level,
+        speed: state.speed,
+        speedLabel: sp ? sp.label : state.speed,
+        score: score,
+        stars: stars
+      };
+
+      resultOverlay.classList.add("visible");
+    }
+
+    btnStartFromIntro.addEventListener("click", () => {
+      const name = inputPlayerName.value.trim();
+      if (!name) { alert("請輸入玩家名稱再繼續。"); inputPlayerName.focus(); return; }
+      state.playerName = name;
+      updateStatusTexts();
+      showPage(2);
+    });
+
+    btnBackToIntro.addEventListener("click", () => showPage(1));
+
+    btnGoGame.addEventListener("click", () => {
+      if (!state.playerName) { alert("請先在第一頁輸入玩家名稱。"); showPage(1); return; }
+      showPage(3);
+      updateStatusTexts();
+      startGame();
+    });
+
+    btnRestart.addEventListener("click", () => {
+      if (!confirm("確定要重新開始本關本速度嗎？目前分數會歸零喔。")) return;
+      startGame();
+    });
+
+    btnPause.addEventListener("click", () => {
+      if (!state.isPlaying) return;
+      if (!state.isPaused) {
+        state.isPaused = true;
+        pauseOverlay.classList.add("visible");
+      }
+    });
+
+    btnResumeFromPause.addEventListener("click", () => {
+      state.isPaused = false;
+      pauseOverlay.classList.remove("visible");
+      if (state.isPlaying && !state.isLocking) answerInput.focus();
+    });
+
+    btnBackMenuFromGame.addEventListener("click", () => {
+      if (!confirm("確定要結束這一局並回關卡主選單嗎？本局成績不會寫入排行榜。")) return;
+      resetGameValues();
+      showPage(2);
+    });
+
+    btnSubmit.addEventListener("click", checkAnswer);
+    answerInput.addEventListener("keydown", e => {
+      if (e.key === "Enter") { e.preventDefault(); checkAnswer(); }
+    });
+
+    btnSaveScore.addEventListener("click", () => {
+      addScoreToLeaderboard(state.pendingScore);
+      state.pendingScore = null;
+      resultOverlay.classList.remove("visible");
+      resetGameValues();
+      showPage(2);
+    });
+
+    btnCloseResult.addEventListener("click", () => {
+      state.pendingScore = null;
+      resultOverlay.classList.remove("visible");
+      resetGameValues();
+      showPage(2);
+    });
+
+    initLevelChips();
+    initSpeedChips();
+    renderLeaderboard();
+    updateStatusTexts();
+  </script>
+</body>
+</html>
